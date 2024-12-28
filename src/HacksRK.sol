@@ -10,13 +10,14 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
  * @title HacksRK Token
  * @dev Implementation of the HacksRK Token with additional security features
  */
+
 contract HacksRK is ERC20, Ownable, Pausable, ReentrancyGuard {
-    // Events
+ 
     event TokensMinted(address indexed to, uint256 amount);
     event TokensBurned(address indexed from, uint256 amount);
     event BlacklistUpdated(address indexed account, bool value);
 
-    // State variables
+ 
     mapping(address => bool) public blacklisted;
     uint256 public constant MAX_SUPPLY = 1000000000 * 10**18; // 1 billion tokens
     uint256 public immutable initialSupply;
@@ -25,6 +26,7 @@ contract HacksRK is ERC20, Ownable, Pausable, ReentrancyGuard {
      * @dev Constructor that gives msg.sender all of existing tokens.
      * @param _initVal The initial supply to mint to the contract creator
      */
+     
     constructor(uint256 _initVal) ERC20("HacksRK", "HRK") Ownable(msg.sender) {
         require(_initVal <= MAX_SUPPLY, "Initial supply exceeds maximum supply");
         _mint(msg.sender, _initVal);
